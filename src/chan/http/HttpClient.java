@@ -479,7 +479,11 @@ public class HttpClient {
 					? request.cookieBuilder : obtainModifiedCookieBuilder(request.cookieBuilder,
 					session.holder.chan, requestedUri, resolverIdentifier);
 			if (cookieBuilder != null) {
+				cookieBuilder.append("mc=1");
 				connection.setRequestProperty("Cookie", cookieBuilder.build());
+			}
+			else {
+				connection.setRequestProperty("Cookie", "mc=1");
 			}
 			HttpValidator validator = request.validator;
 			if (validator != null) {
